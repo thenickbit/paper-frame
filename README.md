@@ -3,7 +3,7 @@
 
 This is a WiFi-enabled e-paper photo frame project that allows users to set their own pictures and receive pictures remotely. 
 
-The current v1 in development is using an esp32 and a black & white display. v2 later next month will use a raspberry pi and a 7-color display
+The current v1 in development is using an esp32 and a black & white display. v2 later next month will use a raspberry pi and a 7-color display.
 
 ## Components
 ### v1
