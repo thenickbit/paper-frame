@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import type { Database } from "@/lib/database.types";
 
+import { env } from "@/env.mjs";
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const supabase = createMiddlewareSupabaseClient<Database>({ req, res });
@@ -14,7 +16,7 @@ export async function middleware(req: NextRequest) {
   } = await supabase.auth.getUser();
 
   if (req.nextUrl.pathname.startsWith("/gallery")) {
-    if (user?.email && process.env.AUTHORIZED_EMAILS?.includes(user.email)) {
+    if (user?.email && env.AUTHORIZED_EMAILS?.includes(user.email)) {
       return NextResponse.next();
     } else {
       return NextResponse.redirect("http://localhost:3000/unauthorized");

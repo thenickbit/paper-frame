@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@supabase/auth-helpers-nextjs': ^0.6.1
   '@supabase/supabase-js': ^2.21.0
+  '@t3-oss/env-nextjs': ^0.3.1
   '@types/node': 20.1.1
   '@types/react': 18.2.6
   '@types/react-dom': 18.2.4
@@ -17,10 +18,12 @@ specifiers:
   supabase: ^1.57.3
   tailwindcss: 3.3.2
   typescript: 5.0.4
+  zod: ^3.21.4
 
 dependencies:
   '@supabase/auth-helpers-nextjs': 0.6.1_4uvvssdpjur2vwb4mrgwovbv6y
   '@supabase/supabase-js': 2.21.0
+  '@t3-oss/env-nextjs': 0.3.1_z34kx2cq3kivpffalfeqk2ugre
   '@types/node': 20.1.1
   '@types/react': 18.2.6
   '@types/react-dom': 18.2.4
@@ -33,6 +36,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   tailwindcss: 3.3.2
   typescript: 5.0.4
+  zod: 3.21.4
 
 devDependencies:
   eslint-plugin-import: 2.27.5_eslint@8.40.0
@@ -339,6 +343,27 @@ packages:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
       tslib: 2.5.0
+    dev: false
+
+  /@t3-oss/env-core/0.3.1_z34kx2cq3kivpffalfeqk2ugre:
+    resolution: {integrity: sha512-iEnBuWeSjzqQLDTUw7H+YhstV4OZrGXTkQGL6ZOMxZQoCmwGX7GVS+1KCd5RvCzOtrIAD9jeOItSWNjC7sG4Sg==}
+    peerDependencies:
+      typescript: '>=4.7.2'
+      zod: ^3.0.0
+    dependencies:
+      typescript: 5.0.4
+      zod: 3.21.4
+    dev: false
+
+  /@t3-oss/env-nextjs/0.3.1_z34kx2cq3kivpffalfeqk2ugre:
+    resolution: {integrity: sha512-W1OgOn5xtpdEGraAQesyLzO2aNLRfSJEyK6qjQFfEUnrPbkvB+WxABX2bPMqfn4KJQ8pziLCSdBFiUN8OagqAg==}
+    peerDependencies:
+      typescript: '>=4.7.2'
+      zod: ^3.0.0
+    dependencies:
+      '@t3-oss/env-core': 0.3.1_z34kx2cq3kivpffalfeqk2ugre
+      typescript: 5.0.4
+      zod: 3.21.4
     dev: false
 
   /@types/json5/0.0.29:
