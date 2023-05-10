@@ -17,7 +17,6 @@ export const ImageGallery = async () => {
   }
 
   const urls = [];
-
   for (const file of imageListData) {
     const { data } = await supabase.storage
       .from("images")
@@ -28,18 +27,18 @@ export const ImageGallery = async () => {
     }
   }
 
-  const images = urls.map((url) => (
-    <Image
-      key={url}
-      alt="image"
-      width={220}
-      height={275}
-      src={url}
-      className="hover:scale-95 transition transform duration-300 ease-in-out"
-    />
-  ));
-
-  return <div className="grid grid-cols-4 p-4">{images}</div>;
-
-  return;
+  return (
+    <div className="grid grid-cols-4 p-4">
+      {urls.map((url) => (
+        <Image
+          key={url}
+          alt="image"
+          width={220}
+          height={275}
+          src={url}
+          className="hover:scale-95 transition transform duration-300 ease-in-out cursor-pointer"
+        />
+      ))}
+    </div>
+  );
 };
