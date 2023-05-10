@@ -9,7 +9,7 @@ export const LoginButton = () => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email: "nicolaschartiot@gmail.com",
       options: {
-        emailRedirectTo: "http://localhost:3000",
+        emailRedirectTo: window.location.origin,
       },
     });
 

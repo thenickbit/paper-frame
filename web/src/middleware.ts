@@ -19,7 +19,7 @@ export async function middleware(req: NextRequest) {
     if (user?.email && env.AUTHORIZED_EMAILS?.includes(user.email)) {
       return NextResponse.next();
     } else {
-      return NextResponse.redirect("http://localhost:3000/unauthorized");
+      return NextResponse.redirect(new URL("/unauthorized", req.url));
     }
   }
 
