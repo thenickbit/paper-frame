@@ -2,6 +2,7 @@
 
 import { useSupabase } from "@/app/supabase-provider";
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const FileUploader = () => {
   const { supabase } = useSupabase();
@@ -10,10 +11,16 @@ export const FileUploader = () => {
   const uploadFile = async () => {
     if (!files) return;
 
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) return;
+
     for (const file of files) {
       const { data, error } = await supabase.storage
         .from("images")
-        .upload(file.name, file, {
+        .upload(`${user.id}/${uuidv4()}`, file, {
           cacheControl: "3600",
           upsert: false,
         });

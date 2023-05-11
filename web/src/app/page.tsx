@@ -23,7 +23,6 @@ const Home = async () => {
         Photo-frame
       </h1>
       {!user && <LoginButton />}
-      <FileUploader />
       {user && <Link href="/gallery">Go to gallery</Link>}
     </main>
   );
