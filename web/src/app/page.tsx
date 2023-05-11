@@ -1,5 +1,5 @@
 import { FileUploader } from "@/components/FileUploader";
-import { LoginButton } from "../components/LoginButton";
+import { LoginForm } from "../components/login-form";
 import Link from "next/link";
 
 import { createServerComponentSupabaseClient } from "@supabase/auth-helpers-nextjs";
@@ -11,8 +11,6 @@ const Home = async () => {
     cookies,
   });
 
-  await supabase.auth.getSession();
-
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -22,7 +20,7 @@ const Home = async () => {
       <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
         Photo-frame
       </h1>
-      {!user && <LoginButton />}
+      {!user && <LoginForm />}
       {user && <Link href="/gallery">Go to gallery</Link>}
     </main>
   );

@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import { useSupabase } from "../app/supabase-provider";
 import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
-export const LoginButton = () => {
+export const LoginForm = () => {
   const { supabase } = useSupabase();
+  const [email, setEmail] = useState("");
 
   async function signInWithEmail() {
     const { data, error } = await supabase.auth.signInWithOtp({
-      email: "nicolaschartiot@gmail.com",
+      email: email,
       options: {
         emailRedirectTo: window.location.origin,
       },
@@ -17,5 +20,10 @@ export const LoginButton = () => {
     console.log({ data, error });
   }
 
-  return <Button onClick={signInWithEmail}>Login</Button>;
+  return (
+    <div>
+      <Input value={email} onChange={(e) => setEmail(e.target.value)} />
+      <Button onClick={signInWithEmail}>Login</Button>
+    </div>
+  );
 };
