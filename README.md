@@ -1,4 +1,4 @@
-# Photo-Frame
+# The Frame
 🚧 Under Active Development 🚧
 
 This is a WiFi-enabled e-paper photo frame project that allows users to set their own pictures and receive pictures remotely. 
