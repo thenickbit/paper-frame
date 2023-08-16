@@ -10,7 +10,7 @@ export function SiteHeader() {
   return (
     <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-40 w-full border-b bg-background/60 backdrop-blur">
       <div className="container flex h-14 items-center">
-        <h1 className="font-semibold">next-supabase-shadcn</h1>
+        <h1 className="font-semibold">Paper Frame</h1>
         <div className="flex flex-1 items-center justify-end space-x-2 sm:space-x-4">
           <nav className="flex items-center space-x-1">
             <Link href={siteConfig.links.github} target="_blank" rel="noreferrer">
