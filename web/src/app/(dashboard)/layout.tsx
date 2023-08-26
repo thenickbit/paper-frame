@@ -17,13 +17,13 @@ const links: Link[] = [
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen gap-4">
+    <div className="flex h-screen">
       <nav className="flex h-full w-24 flex-col items-center gap-4 border-r py-8">
         {links.map(({ name, path, icon }) => (
           <SideNavLink key={name} name={name} path={path} iconName={icon} />
         ))}
       </nav>
-      <main>{children}</main>
+      <main className="flex flex-1 justify-center p-8">{children}</main>
     </div>
   );
 }

@@ -23,6 +23,7 @@ import {
   SunMedium,
   Trash,
   Twitter,
+  Upload,
   User,
   X,
 } from 'lucide-react';
@@ -65,6 +66,7 @@ export const Icons = {
   copy: Copy,
   copyDone: ClipboardCheck,
   sun: SunMedium,
+  upload: Upload,
   moon: Moon,
   laptop: Laptop,
   github: (props: LucideProps) => (
