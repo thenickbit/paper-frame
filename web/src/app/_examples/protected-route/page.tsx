@@ -12,8 +12,9 @@ export default async function ProtectedRoute() {
   const supabase = createServerComponentClient({ cookies });
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
+  const user = session?.user;
 
   if (!user) {
     // This route can only be accessed by authenticated users.

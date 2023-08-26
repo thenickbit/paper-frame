@@ -1,14 +1,16 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
+
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export async function ImageGallery() {
   const supabase = createServerComponentClient({ cookies });
 
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
+  const user = session?.user;
 
   const { data: images, error } = await supabase.storage.from('images').list(user?.id, {
     sortBy: {
@@ -25,11 +27,7 @@ export async function ImageGallery() {
     .from('images')
     .createSignedUrls(imagePaths, 60);
 
-  console.log(signedUrls);
-
   if (!signedUrls || signedUrls.length === 0) return null;
-
-  // return <Image src={signedUrls[0].signedUrl} alt="image" width={80} height={200} />;
 
   return (
     <ScrollArea>
