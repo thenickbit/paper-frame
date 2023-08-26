@@ -1,7 +1,4 @@
-import Image from 'next/image';
-
 import { SiteHeader } from '@/components/site-header';
-import { Button } from '@/components/ui/button';
 
 export default async function Home() {
   return (

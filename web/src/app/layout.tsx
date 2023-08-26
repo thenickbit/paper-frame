@@ -2,7 +2,6 @@ import './globals.css';
 
 import { Inter } from 'next/font/google';
 
-import { SiteHeader } from '@/components/site-header';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
@@ -23,7 +22,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={cn('min-h-screen font-sans antialiased', fontSans.variable)}>
         <main>
           <ThemeProvider attribute="class" defaultTheme="light">
-            {/* <SiteHeader /> */}
             {children}
           </ThemeProvider>
         </main>

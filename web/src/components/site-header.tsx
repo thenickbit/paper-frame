@@ -2,12 +2,11 @@ import Link from 'next/link';
 import { Suspense } from 'react';
 
 import { ThemeToggle } from '@/components/theme-toggle';
-import { buttonVariants } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 import { navItems, siteConfig } from '@/config/site';
 import { cn } from '@/lib/utils';
 
-import { LoginDashboardButton } from './login-dashboard-button';
+// import { LoginDashboardButton } from './login-dashboard-button';
 
 export function SiteHeader() {
   return (
@@ -33,9 +32,9 @@ export function SiteHeader() {
       </nav>
       <div className="ml-auto flex items-center gap-2">
         <ThemeToggle />
-        <Suspense>
+        {/* <Suspense>
           <LoginDashboardButton />
-        </Suspense>
+        </Suspense> */}
       </div>
     </nav>
   );
