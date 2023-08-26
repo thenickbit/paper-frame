@@ -8,4 +8,10 @@ export const siteConfig = {
   },
 };
 
+export const navItems = [
+  { title: 'Overview', href: '/' },
+  { title: 'About', href: '/about' },
+  { title: 'Pricing', href: '/pricing' },
+];
+
 export type SiteConfig = typeof siteConfig;

@@ -2,6 +2,6 @@
   "singleQuote": true,
   "pluginSearchDirs": false,
   "plugins": ["prettier-plugin-tailwindcss"],
-  "tailwindConfig": "./tailwind.config.js",
+  "tailwindConfig": "./tailwind.config.ts",
   "printWidth": 100
 }

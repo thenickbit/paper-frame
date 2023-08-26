@@ -5,15 +5,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write \"./src/**/*.?(ts|tsx|js|jsx|json|md|mdx})\"",
+    "format": "next lint --fix && prettier --write \"./src/**/*.?(ts|tsx|js|jsx|json|md|mdx})\"",
     "ui:add": "pnpm dlx shadcn-ui@latest add",
     "ui:diff": "pnpm dlx shadcn-ui@latest diff",
     "supabase": "supabase"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.3.0",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.4.8",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.4",
     "@supabase/auth-helpers-nextjs": "latest",
@@ -28,10 +30,12 @@
     "postcss": "8.4.24",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.45.4",
     "tailwind-merge": "^1.13.2",
     "tailwindcss": "3.3.2",
     "tailwindcss-animate": "^1.0.6",
-    "typescript": "5.1.3"
+    "typescript": "5.1.3",
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/node": "20.3.1",
