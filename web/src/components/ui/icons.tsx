@@ -15,6 +15,7 @@ import {
   Laptop,
   Loader2,
   type LucideProps,
+  MessageCircle,
   Moon,
   MoreVertical,
   Pizza,
@@ -69,6 +70,7 @@ export const Icons = {
   upload: Upload,
   moon: Moon,
   laptop: Laptop,
+  message: MessageCircle,
   github: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

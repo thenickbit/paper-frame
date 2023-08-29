@@ -22,8 +22,8 @@ export default function SideNavLink({ name, path, iconName }: SideNavLinkProps) 
     <Link key={name} href={path}>
       <div
         className={cn(
-          'flex aspect-square h-12 items-center justify-center rounded-full bg-blue-500',
-          active ? 'bg-blue-500' : 'bg-red-500'
+          'flex aspect-square h-12 items-center justify-center rounded-full',
+          active && 'bg-muted'
         )}
       >
         {IconElement && <IconElement />}

@@ -12,7 +12,7 @@ type Link = {
 
 const links: Link[] = [
   { name: 'Gallery', path: '/gallery', icon: 'media' },
-  { name: 'messages', path: '/messages', icon: 'settings' },
+  { name: 'messages', path: '/messages', icon: 'message' },
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
