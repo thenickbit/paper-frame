@@ -2,8 +2,6 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import Image from 'next/image';
 
-import { ScrollArea } from '@/components/ui/scroll-area';
-
 export async function ImageGallery() {
   const supabase = createServerComponentClient({ cookies });
 
@@ -30,10 +28,10 @@ export async function ImageGallery() {
   if (!signedUrls || signedUrls.length === 0) return null;
 
   return (
-    <ScrollArea>
+    <div className="grid h-screen w-full flex-1 grid-cols-4 gap-4 overflow-y-scroll rounded-md border p-4">
       {signedUrls?.map(({ signedUrl }) => (
         <Image key={signedUrl} src={signedUrl} alt="image" width={300} height={500} />
       ))}
-    </ScrollArea>
+    </div>
   );
 }

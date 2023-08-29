@@ -14,9 +14,7 @@ export default function Gallery() {
         <h1 className="flex-1 text-4xl font-extrabold tracking-tight lg:text-5xl">Gallery</h1>
         <FileUploader />
       </div>
-      <section>
-        <ImageGallery />
-      </section>
+      <ImageGallery />
     </div>
   );
 }
