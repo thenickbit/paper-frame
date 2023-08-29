@@ -23,7 +23,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           <SideNavLink key={name} name={name} path={path} iconName={icon} />
         ))}
       </nav>
-      <main className="flex flex-1 justify-center p-8">{children}</main>
+      <main className="flex flex-1 justify-center">{children}</main>
     </div>
   );
 }

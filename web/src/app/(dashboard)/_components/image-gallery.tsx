@@ -29,7 +29,7 @@ export async function ImageGallery() {
   if (!signedUrls || signedUrls.length === 0) return null;
 
   return (
-    <div className="grid h-screen w-full flex-1 grid-cols-4 gap-4 overflow-y-scroll rounded-md border p-4">
+    <div className="grid h-screen w-full flex-1 grid-cols-4 gap-4 overflow-y-scroll p-8">
       {signedUrls?.map(({ signedUrl }) => (
         <Image key={signedUrl} src={signedUrl} alt="image" width={300} height={500} />
       ))}
