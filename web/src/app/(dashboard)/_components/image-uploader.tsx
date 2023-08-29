@@ -12,7 +12,7 @@ export const ImageUploader = () => {
   const supabase = createClientComponentClient();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const uploadFiles = async (files: FileList | null) => {
     if (!files) return;
@@ -56,7 +56,7 @@ export const ImageUploader = () => {
       <Button
         className="ml-auto"
         variant="outline"
-        onClick={() => inputRef.current && inputRef.current.click()}
+        onClick={() => inputRef.current?.click()}
         disabled={loading}
       >
         {loading ? 'Uploading' : 'Upload'}
