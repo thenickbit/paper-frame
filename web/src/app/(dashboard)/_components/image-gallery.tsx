@@ -17,9 +17,10 @@ export async function ImageGallery() {
     },
   });
 
-  if (!images || error || !user) return null;
+  const filteredImages = images?.filter((image) => image.name !== '.emptyFolderPlaceholder');
+  if (!filteredImages || error || !user) return null;
 
-  const imagePaths = images.map((image) => `${user?.id}/${image.name}`);
+  const imagePaths = filteredImages.map((image) => `${user?.id}/${image.name}`);
 
   const { data: signedUrls } = await supabase.storage
     .from('images')

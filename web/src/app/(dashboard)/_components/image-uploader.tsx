@@ -2,19 +2,19 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Button } from '@/components/ui/button';
 import { Icons } from '@/components/ui/icons';
 
-export const FileUploader = () => {
+export const ImageUploader = () => {
   const supabase = createClientComponentClient();
   const router = useRouter();
-  const [files, setFiles] = useState<FileList | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const inputRef = useRef(null);
 
-  const uploadFile = async () => {
+  const uploadFiles = async (files: FileList | null) => {
     if (!files) return;
 
     setLoading(true);
@@ -27,10 +27,14 @@ export const FileUploader = () => {
     if (!user) return;
 
     for (const file of files) {
-      await supabase.storage.from('images').upload(`${user.id}/${uuidv4()}`, file, {
-        cacheControl: '3600',
-        upsert: false,
-      });
+      const { error } = await supabase.storage
+        .from('images')
+        .upload(`${user.id}/${uuidv4()}`, file, {
+          cacheControl: '3600',
+          upsert: false,
+        });
+
+      if (error) throw new Error(error.message);
     }
 
     setLoading(false);
@@ -40,14 +44,21 @@ export const FileUploader = () => {
   return (
     <div>
       <input
+        className="hidden"
         type="file"
+        ref={inputRef}
         multiple
         onChange={(e) => {
-          setFiles(e.target.files);
+          uploadFiles(e.target.files);
         }}
       />
 
-      <Button className="ml-auto" variant="outline" onClick={uploadFile} disabled={loading}>
+      <Button
+        className="ml-auto"
+        variant="outline"
+        onClick={() => inputRef.current && inputRef.current.click()}
+        disabled={loading}
+      >
         {loading ? 'Uploading' : 'Upload'}
         {loading ? <Icons.spinner className="animate-spin" /> : <Icons.upload />}
       </Button>
