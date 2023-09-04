@@ -4,7 +4,7 @@
 This is a WiFi-enabled e-paper photo frame project that allows users to set their own pictures and receive pictures remotely. 
 It is currently in development using a raspberry pi zero and a 7-color display.
 
-For reference, check [this tweet](https://twitter.com/nchartiot/status/1678826871675408386).
+For reference, check [this tweet](https://twitter.com/nchartiot/status/1698394878885957994).
 
 ## Components
 - Raspberry pi zero (wherever you can find it honestly)
