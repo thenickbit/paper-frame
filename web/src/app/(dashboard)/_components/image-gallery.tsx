@@ -1,13 +1,10 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import Image from 'next/image';
 
-export async function ImageGallery() {
-  const supabase = createServerComponentClient({ cookies });
+import { createServerSupabaseClient, getSession } from '@/utils/supabase';
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+export async function ImageGallery() {
+  const supabase = createServerSupabaseClient();
+  const session = await getSession();
   const user = session?.user;
 
   const { data: images, error } = await supabase.storage.from('images').list(user?.id, {
@@ -29,7 +26,7 @@ export async function ImageGallery() {
   if (!signedUrls || signedUrls.length === 0) return null;
 
   return (
-    <div className="grid h-screen w-full flex-1 grid-cols-4 gap-4 overflow-y-scroll p-8">
+    <div className="grid h-screen w-full flex-1 grid-cols-1 gap-4 overflow-y-scroll p-8 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 3xl:grid-cols-8">
       {signedUrls?.map(({ signedUrl }) => (
         <Image key={signedUrl} src={signedUrl} alt="image" width={300} height={500} />
       ))}

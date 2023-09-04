@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 import { Icons } from '@/components/ui/icons';
+import { getSession } from '@/utils/supabase';
 
 import SideNavLink from './_components/side-nav-link';
 
@@ -15,7 +17,12 @@ const links: Link[] = [
   { name: 'messages', path: '/messages', icon: 'message' },
 ];
 
-export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const session = await getSession();
+  const user = session?.user;
+
+  if (!user) redirect('/auth/signin');
+
   return (
     <div className="flex h-screen">
       <nav className="flex h-full w-24 flex-col items-center gap-4 border-r py-8">

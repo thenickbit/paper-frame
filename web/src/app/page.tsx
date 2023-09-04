@@ -1,20 +1,15 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+// import { redirect } from 'next/navigation';
 
 import { SiteHeader } from '@/components/site-header';
+// import { getSession } from '@/utils/supabase';
 
 export default async function Home() {
-  const supabase = createServerComponentClient({ cookies });
+  // const session = await getSession();
+  // const user = session?.user;
 
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
-  const user = session?.user;
-
-  if (user) {
-    redirect('/gallery');
-  }
+  // if (user) {
+  //   redirect('/gallery');
+  // }
 
   return (
     <>
