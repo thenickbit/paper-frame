@@ -8,7 +8,8 @@ const apiId = process.env.UNKEY_API_ID!;
 const unkey = new Unkey({ token });
 
 export async function GET(req: NextRequest) {
-  const userId = req.nextUrl.searchParams.get('userid') || '';
+  const userId = req.nextUrl.searchParams.get('userid');
+  if (!userId) return NextResponse.json({ error: 'No user id provided' }, { status: 400 });
 
   const { result, error } = await unkey.keys.create({
     apiId,
@@ -24,6 +25,5 @@ export async function GET(req: NextRequest) {
   });
 
   if (error) return NextResponse.json({ error }, { status: 500 });
-
   return NextResponse.json({ key: result.key });
 }
