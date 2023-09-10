@@ -6,8 +6,8 @@
     "start": "next start",
     "lint": "next lint",
     "format": "next lint --fix && prettier --write \"./src/**/*.?(ts|tsx|js|jsx|json|md|mdx})\"",
-    "ui:add": "pnpm dlx shadcn-ui@latest add",
-    "ui:diff": "pnpm dlx shadcn-ui@latest diff",
+    "ui:add": "bunx shadcn-ui@latest add",
+    "ui:diff": "bunx shadcn-ui@latest diff",
     "supabase": "supabase"
   },
   "dependencies": {
