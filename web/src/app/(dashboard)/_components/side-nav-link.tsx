@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 
 import { Icons } from '@/components/ui/icons';
 import { cn } from '@/utils/cn';
-import { TypographyP } from '@/components/ui/typography';
 
 type SideNavLinkProps = {
   name: string;
