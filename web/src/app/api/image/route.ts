@@ -35,12 +35,14 @@ export async function GET(req: NextRequest) {
   const userId = unkeyResult.ownerId;
 
   // Get images
-  const { data: images } = await supabase.storage.from('images').list(userId, {
+  const { data: unfilteredImages } = await supabase.storage.from('images').list(userId, {
     sortBy: {
       column: 'created_at',
       order: 'desc',
     },
   });
+
+  const images = unfilteredImages?.filter((image) => image.name !== '.emptyFolderPlaceholder');
   if (!images || images.length === 0) {
     return NextResponse.json({ error: 'No images found' }, { status: 404 });
   }
@@ -49,7 +51,13 @@ export async function GET(req: NextRequest) {
   const randomImage = getRandomImageName(images);
   const { data: imageData } = await supabase.storage
     .from('images')
-    .download(`${userId}/${randomImage}`);
+    .download(`${userId}/${randomImage}`, {
+      transform: {
+        quality: 100,
+        width: 480,
+        height: 800,
+      },
+    });
   if (!imageData) return NextResponse.json({ error: 'Image not found' }, { status: 404 });
 
   return new NextResponse(imageData, {
