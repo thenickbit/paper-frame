@@ -3,7 +3,7 @@ import { redirect } from 'next/navigation';
 
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Icons } from '@/components/ui/icons';
-import { TypographyH3, TypographyH4 } from '@/components/ui/typography';
+import { TypographyH4 } from '@/components/ui/typography';
 import { getSession } from '@/utils/supabase';
 
 import SideNavLink from './_components/side-nav-link';
