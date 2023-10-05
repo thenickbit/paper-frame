@@ -3,24 +3,13 @@ import { verifyKey } from '@unkey/api';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-type FileObject = {
-  name: string;
-  bucket_id: string;
-  owner: string;
-  id: string;
-  updated_at: string;
-  created_at: string;
-  last_accessed_at: string;
-  metadata: Record<string, any>;
-  buckets: any;
-};
-
-const getRandomImageName = (images: FileObject[]) => {
-  const randomImage = images[Math.floor(Math.random() * images.length)];
-  return randomImage.name;
-};
-
 export async function GET(req: NextRequest) {
+  const getRandomImageName = (images: typeof unfilteredImages) => {
+    if (!images) return null;
+    const randomImage = images[Math.floor(Math.random() * images.length)];
+    return randomImage.name;
+  };
+
   // Get key from query
   const key = req.nextUrl.searchParams.get('key');
   if (!key) return NextResponse.json({ error: 'No key provided' }, { status: 400 });
@@ -51,13 +40,8 @@ export async function GET(req: NextRequest) {
   const randomImage = getRandomImageName(images);
   const { data: imageData } = await supabase.storage
     .from('images')
-    .download(`${userId}/${randomImage}`, {
-      transform: {
-        quality: 100,
-        width: 480,
-        height: 800,
-      },
-    });
+    .download(`${userId}/${randomImage}`);
+
   if (!imageData) return NextResponse.json({ error: 'Image not found' }, { status: 404 });
 
   return new NextResponse(imageData, {
