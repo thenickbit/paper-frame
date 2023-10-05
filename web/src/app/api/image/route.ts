@@ -51,7 +51,13 @@ export async function GET(req: NextRequest) {
   const randomImage = getRandomImageName(images);
   const { data: imageData } = await supabase.storage
     .from('images')
-    .download(`${userId}/${randomImage}`);
+    .download(`${userId}/${randomImage}`, {
+      transform: {
+        quality: 100,
+        width: 480,
+        height: 800,
+      },
+    });
   if (!imageData) return NextResponse.json({ error: 'Image not found' }, { status: 404 });
 
   return new NextResponse(imageData, {
