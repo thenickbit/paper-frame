@@ -35,12 +35,14 @@ export async function GET(req: NextRequest) {
   const userId = unkeyResult.ownerId;
 
   // Get images
-  const { data: images } = await supabase.storage.from('images').list(userId, {
+  const { data: unfilteredImages } = await supabase.storage.from('images').list(userId, {
     sortBy: {
       column: 'created_at',
       order: 'desc',
     },
   });
+
+  const images = unfilteredImages?.filter((image) => image.name !== '.emptyFolderPlaceholder');
   if (!images || images.length === 0) {
     return NextResponse.json({ error: 'No images found' }, { status: 404 });
   }
