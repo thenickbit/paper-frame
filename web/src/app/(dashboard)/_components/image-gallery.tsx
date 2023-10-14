@@ -55,7 +55,7 @@ export async function ImageGallery() {
           <DialogTrigger className="h-fit">
             <Link href={`/gallery/${id}`}>
               <Image
-                className="cursor-pointer transition-transform hover:scale-110"
+                className="cursor-pointer transition-transform hover:scale-110 rounded-lg"
                 src={url}
                 alt="image"
                 width={300}
