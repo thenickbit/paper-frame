@@ -2,19 +2,31 @@
 
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { useCallback, useState } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Icons } from '@/components/ui/icons';
+
+import { ImageCropper } from './image-cropper';
 
 export const ImageUploader = () => {
   const supabase = createClientComponentClient();
   const router = useRouter();
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [fileList, setFileList] = useState<File[]>();
 
-  const uploadFiles = async (files: FileList | null) => {
+  const onDrop = useCallback((acceptedFiles: File[]) => setFileList(acceptedFiles), []);
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const handleDialogStateChange = (state: boolean) => {
+    setOpenDialog(state);
+    if (state === false) setFileList(undefined);
+  };
+
+  const uploadFiles = async (files: File[]) => {
     if (!files) return;
 
     setLoading(true);
@@ -29,7 +41,7 @@ export const ImageUploader = () => {
     for (const file of files) {
       const { error } = await supabase.storage
         .from('images')
-        .upload(`${user.id}/${uuidv4()}`, file, {
+        .upload(`${user.id}/${file.name}`, file, {
           cacheControl: '3600',
           upsert: false,
         });
@@ -38,30 +50,46 @@ export const ImageUploader = () => {
     }
 
     setLoading(false);
+    setOpenDialog(false);
     router.refresh();
   };
 
   return (
     <div>
-      <input
-        className="hidden"
-        type="file"
-        ref={inputRef}
-        multiple
-        onChange={(e) => {
-          uploadFiles(e.target.files);
-        }}
-      />
-
       <Button
         className="ml-auto"
         variant="outline"
-        onClick={() => inputRef.current?.click()}
         disabled={loading}
+        onClick={() => setOpenDialog(true)}
       >
         {loading ? 'Uploading' : 'Upload'}
-        {loading ? <Icons.spinner className="animate-spin" /> : <Icons.upload />}
+        <span className="ml-2">
+          {loading ? <Icons.spinner className="animate-spin" /> : <Icons.upload />}
+        </span>
       </Button>
+
+      <Dialog open={openDialog} onOpenChange={(state) => handleDialogStateChange(state)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Upload images</DialogTitle>
+          </DialogHeader>
+          {fileList ? (
+            <ImageCropper fileList={fileList} uploadFiles={uploadFiles} loading={loading} />
+          ) : (
+            <div
+              {...getRootProps()}
+              className="rounded-md border border-dashed border-ring bg-secondary p-6"
+            >
+              <input {...getInputProps()} />
+              {isDragActive ? (
+                <p>Drop the files here ...</p>
+              ) : (
+                <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
+              )}
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
