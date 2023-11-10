@@ -18,7 +18,7 @@ export function Image({ src }: ImageProps) {
       )}
     >
       <NextImage
-        className="cursor-pointer rounded-lg transition-transform hover:scale-110"
+        className="cursor-pointer rounded-lg transition-transform hover:scale-110 shadow-md"
         src={src}
         alt="image"
         width={300}
