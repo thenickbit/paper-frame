@@ -1,15 +1,6 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@/components/ui/dialog';
 import { createServerSupabaseClient, getSession } from '@/utils/supabase';
+
+import { Image } from './image';
 
 export async function ImageGallery() {
   const supabase = createServerSupabaseClient();
@@ -51,28 +42,8 @@ export async function ImageGallery() {
   return (
     <div className="grid h-screen w-full flex-1 grid-cols-1 gap-4 overflow-y-scroll p-8 md:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-6 3xl:grid-cols-8">
       {images?.map(({ id, url }) => (
-        <Dialog key={id}>
-          <DialogTrigger className="h-fit">
-            <Link href={`/gallery/${id}`}>
-              <Image
-                className="cursor-pointer transition-transform hover:scale-110 rounded-lg"
-                src={url}
-                alt="image"
-                width={300}
-                height={500}
-              />
-            </Link>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>Are you sure absolutely sure?</DialogTitle>
-              <DialogDescription>
-                This action cannot be undone. This will permanently delete your account and remove
-                your data from our servers.
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
+        // eslint-disable-next-line jsx-a11y/alt-text
+        <Image src={url} key={id} />
       ))}
     </div>
   );
