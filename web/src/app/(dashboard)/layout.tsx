@@ -16,7 +16,6 @@ type Link = {
 
 const links: Link[] = [
   { name: 'Gallery', path: '/gallery', icon: 'media' },
-  { name: 'Quotes', path: '/quotes', icon: 'quote' },
 ];
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
