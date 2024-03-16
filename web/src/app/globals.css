@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.debug {
+  @apply border border-red-500;
+}
+
 @layer base {
   :root {
     --background: 0deg 0% 100%;
