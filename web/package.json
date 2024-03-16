@@ -59,6 +59,7 @@
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "supabase": "^1.86.1"
+    "supabase": "^1.86.1",
+    "tailwindcss-dotted-background": "^1.1.0"
   }
 }
