@@ -75,5 +75,9 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate'), require('tailwindcss-dotted-background')],
+  plugins: [
+    require('tailwindcss-animate'),
+    require('tailwindcss-dotted-background'),
+    require('@tailwindcss/container-queries'),
+  ],
 };

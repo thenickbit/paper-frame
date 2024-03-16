@@ -22,6 +22,7 @@
     "@radix-ui/react-toast": "^1.1.4",
     "@supabase/auth-helpers-nextjs": "latest",
     "@supabase/supabase-js": "latest",
+    "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/nesting": "0.0.0-insiders.565cd3e",
     "@types/mdx": "^2.0.5",
     "@unkey/api": "^0.6.21",
