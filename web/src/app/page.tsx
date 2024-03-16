@@ -1,6 +1,7 @@
 // import { redirect } from 'next/navigation';
 
-import { SiteHeader } from '@/components/site-header';
+import { ThemeToggle } from '@/components/theme-toggle';
+
 // import { getSession } from '@/utils/supabase';
 
 export default async function Home() {
@@ -12,8 +13,8 @@ export default async function Home() {
   // }
 
   return (
-    <>
-      <SiteHeader />
+    <main className="p-4">
+      <ThemeToggle />
       <div className="bg-dotted-spacing-4 bg-dotted-gray-200 dark:bg-dotted-gray-900">
         <div className="relative isolate pt-14">
           <div className="py-24 sm:py-32 lg:pb-40">
@@ -35,6 +36,6 @@ export default async function Home() {
           </div>
         </div>
       </div>
-    </>
+    </main>
   );
 }
