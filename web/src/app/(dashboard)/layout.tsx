@@ -26,7 +26,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
 
   return (
     <div className="flex h-screen gap-4 ">
-      <div className="flex w-52 flex-col gap-8 border-r p-4">
+      {/* <div className="flex w-52 flex-col gap-8 border-r p-4">
         <div className="flex items-center justify-between">
           <TypographyH4 className="select-none">Paper Frame</TypographyH4>
           <ThemeToggle />
@@ -36,7 +36,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
             <SideNavLink key={name} name={name} path={path} iconName={icon} />
           ))}
         </nav>
-      </div>
+      </div> */}
 
       <main className="flex flex-1 justify-center">{children}</main>
     </div>
