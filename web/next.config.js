@@ -4,7 +4,6 @@ const nextConfig = {
     domains: ['bjhggmghrukolvrzasek.supabase.co'],
   },
   experimental: {
-    serverActions: true,
     mdxRs: true,
   },
 };

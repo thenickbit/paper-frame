@@ -1,22 +1,22 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import { redirect } from 'next/navigation';
 
-import { ThemeToggle } from '@/components/theme-toggle';
-import { Icons } from '@/components/ui/icons';
-import { TypographyH4 } from '@/components/ui/typography';
+// import { ThemeToggle } from '@/components/theme-toggle';
+// import { Icons } from '@/components/ui/icons';
+// import { TypographyH4 } from '@/components/ui/typography';
 import { getSession } from '@/utils/supabase';
 
-import SideNavLink from './_components/side-nav-link';
+// import SideNavLink from './_components/side-nav-link';
 
-type Link = {
-  name: string;
-  path: string;
-  icon: keyof typeof Icons;
-};
+// type Link = {
+//   name: string;
+//   path: string;
+//   icon: keyof typeof Icons;
+// };
 
-const links: Link[] = [
-  { name: 'Gallery', path: '/gallery', icon: 'media' },
-];
+// const links: Link[] = [
+//   { name: 'Gallery', path: '/gallery', icon: 'media' },
+// ];
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const session = await getSession();
