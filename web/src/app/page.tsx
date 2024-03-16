@@ -1,41 +1,38 @@
-// import { redirect } from 'next/navigation';
-
 import { ThemeToggle } from '@/components/theme-toggle';
-
-// import { getSession } from '@/utils/supabase';
+import { Button } from '@/components/ui/button';
+import { Icons } from '@/components/ui/icons';
+import Balancer from 'react-wrap-balancer';
 
 export default async function Home() {
-  // const session = await getSession();
-  // const user = session?.user;
-
-  // if (user) {
-  //   redirect('/gallery');
-  // }
-
   return (
-    <main className="p-4">
-      <ThemeToggle />
-      <div className="bg-dotted-spacing-4 bg-dotted-gray-200 dark:bg-dotted-gray-900">
-        <div className="relative isolate pt-14">
-          <div className="py-24 sm:py-32 lg:pb-40">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8">
-              <div className="mx-auto max-w-2xl text-center">
-                <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">Paper frame</h1>
-                {/* <p className="mt-6 text-lg leading-8">Add description</p> */}
-              </div>
-              {/* <div className="mt-16 flow-root sm:mt-24">
-                <Image
-                  src="/app-screenshot-dark.png"
-                  alt="App screenshot"
-                  width={2432}
-                  height={1442}
-                  className="rounded-md shadow-2xl ring-1 ring-gray-900/10"
-                />
-              </div> */}
-            </div>
+    <div className="h-screen p-8 bg-dotted-spacing-12 bg-dotted-secondary">
+      <div className="flex h-full w-full flex-col gap-2 lg:flex-row">
+        <ThemeToggle className="" />
+        <div className="flex h-full w-full grow basis-1/2 flex-col justify-center gap-6 @container">
+          <div>
+            <h1 className="text-9xl font-bold tracking-tight @xs:text-6xl @sm:text-7xl @2xl:text-9xl">
+              One frame,
+            </h1>
+            <h1 className="text-9xl font-bold tracking-tight @xs:text-6xl @sm:text-7xl @2xl:text-9xl">
+              endless art
+            </h1>
           </div>
+          <p className="text-2xl text-muted-foreground">
+            <Balancer>
+              Bring an infinite gallery to life and easily update your curated collection of arts,
+              quotes and photos.
+            </Balancer>
+          </p>
+          <p className="text-2xl text-muted-foreground">Designed for the modern minimalist.</p>
+          <Button className="w-fit" variant="secondary" size="lg">
+            <Icons.github height={16} className="mr-2" /> Learn more
+          </Button>
+          <Button className="w-fit" variant="default" size="lg">
+            Go to gallery
+          </Button>
         </div>
+        <div className="h-full w-full grow basis-1/2"></div>
       </div>
-    </main>
+    </div>
   );
 }
